@@ -1,4 +1,4 @@
-package main{{.Title}}
+package main
 
 import (
 	"hk-jadwal-teknik/routes"

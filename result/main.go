@@ -1,4 +1,3 @@
-{{.Title}}
 package main
 
 import (
