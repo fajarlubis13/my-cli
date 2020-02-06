@@ -17,11 +17,11 @@ import (
 
 // Repositories ...
 type Repositories interface {
-	CreateOne(m *model.HKJadwalTeknik) (int64, error)
-	UpdateOneByID(id int64, m *model.HKJadwalTeknik) (int64, error)
-	GetOneByID(id int64) (*model.HKJadwalTeknik, int64, error)
+	CreateOne(m *model.HKPengiriman) (int64, error)
+	UpdateOneByID(id int64, m *model.HKPengiriman) (int64, error)
+	GetOneByID(id int64) (*model.HKPengiriman, int64, error)
 	DeleteOneByID(id int64) (int64, error)
-	GetAll(filter *request.QueryParameter) ([]*model.HKJadwalTeknik, int64, error)
+	GetAll(filter *request.QueryParameter) ([]*model.HKPengiriman, int64, error)
 }
 
 type repositories struct {
@@ -35,8 +35,8 @@ func NewRepositories() Repositories {
 	}
 }
 
-func (v *repositories) CreateOne(m *model.HKJadwalTeknik) (int64, error) {
-	query := "INSERT INTO emonica_v2.hk_jadwal_teknik(kode_jadwal, deskripsi, id_skema_laporan_teknik) VALUES(?, ?, ?) RETURNING id"
+func (v *repositories) CreateOne(m *model.HKPengiriman) (int64, error) {
+	query := "INSERT INTO emonica_v2.hk_pengiriman(kode_jadwal, deskripsi, id_skema_laporan_teknik) VALUES(?, ?, ?) RETURNING id"
 
 	if err := v.DB.QueryRowx(v.DB.Rebind(query), m.KodeJadwal, m.Deskripsi, m.IDSkemaLaporanTeknik).Scan(&m.ID); err != nil {
 		return -1, err
@@ -45,8 +45,8 @@ func (v *repositories) CreateOne(m *model.HKJadwalTeknik) (int64, error) {
 	return 1, nil
 }
 
-func (v *repositories) UpdateOneByID(id int64, m *model.HKJadwalTeknik) (int64, error) {
-	query := "UPDATE emonica_v2.hk_jadwal_teknik SET kode_jadwal = ?, deskripsi = ?, id_skema_laporan_teknik = ? WHERE id = ?"
+func (v *repositories) UpdateOneByID(id int64, m *model.HKPengiriman) (int64, error) {
+	query := "UPDATE emonica_v2.hk_pengiriman SET kode_jadwal = ?, deskripsi = ?, id_skema_laporan_teknik = ? WHERE id = ?"
 
 	res, err := v.DB.Exec(v.DB.Rebind(query), m.KodeJadwal, m.Deskripsi, m.IDSkemaLaporanTeknik, m.ID)
 	if err != nil {
@@ -57,11 +57,11 @@ func (v *repositories) UpdateOneByID(id int64, m *model.HKJadwalTeknik) (int64, 
 	return ra, nil
 }
 
-func (v *repositories) GetOneByID(id int64) (*model.HKJadwalTeknik, int64, error) {
-	query := "SELECT id, kode_jadwal, deskripsi, id_skema_laporan_teknik, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by FROM emonica_v2.hk_jadwal_teknik WHERE id = ?"
+func (v *repositories) GetOneByID(id int64) (*model.HKPengiriman, int64, error) {
+	query := "SELECT id, kode_jadwal, deskripsi, id_skema_laporan_teknik, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by FROM emonica_v2.hk_pengiriman WHERE id = ?"
 
 	var (
-		data                 model.HKJadwalTeknik
+		data                 model.HKPengiriman
 		kodeJadwal           sql.NullString
 		deskripsi            sql.NullString
 		idSkemaLaporanTeknik sql.NullInt64
@@ -107,7 +107,7 @@ func (v *repositories) GetOneByID(id int64) (*model.HKJadwalTeknik, int64, error
 }
 
 func (v *repositories) DeleteOneByID(id int64) (int64, error) {
-	query := "DELETE FROM emonica_v2.hk_jadwal_teknik WHERE id = ?"
+	query := "DELETE FROM emonica_v2.hk_pengiriman WHERE id = ?"
 
 	res, err := v.DB.Exec(v.DB.Rebind(query), id)
 	if err != nil {
@@ -118,7 +118,7 @@ func (v *repositories) DeleteOneByID(id int64) (int64, error) {
 	return ra, nil
 }
 
-func (v *repositories) GetAll(filter *request.QueryParameter) ([]*model.HKJadwalTeknik, int64, error) {
+func (v *repositories) GetAll(filter *request.QueryParameter) ([]*model.HKPengiriman, int64, error) {
 	var (
 		searchToInt64, _ = strconv.ParseInt(filter.Search, 10, 64)
 		namedQuery       = map[string]interface{}{
@@ -137,8 +137,8 @@ func (v *repositories) GetAll(filter *request.QueryParameter) ([]*model.HKJadwal
 
 	var (
 		columns    = "id, kode_jadwal, deskripsi, id_skema_laporan_teknik, created_at, created_by, updated_at, updated_by, deleted_at, deleted_by"
-		mainQuery  = fmt.Sprintf("SELECT %s FROM emonica_v2.hk_jadwal_teknik ", columns)
-		countQuery = fmt.Sprintf("SELECT %s FROM emonica_v2.hk_jadwal_teknik ", "COUNT(*) as count")
+		mainQuery  = fmt.Sprintf("SELECT %s FROM emonica_v2.hk_pengiriman ", columns)
+		countQuery = fmt.Sprintf("SELECT %s FROM emonica_v2.hk_pengiriman ", "COUNT(*) as count")
 
 		firstConcat = "WHERE"
 	)
@@ -163,12 +163,12 @@ func (v *repositories) GetAll(filter *request.QueryParameter) ([]*model.HKJadwal
 	defer rows.Close()
 
 	var (
-		result = make([]*model.HKJadwalTeknik, 0)
+		result = make([]*model.HKPengiriman, 0)
 	)
 
 	for rows.Next() {
 		var (
-			data                 model.HKJadwalTeknik
+			data                 model.HKPengiriman
 			id                   sql.NullInt64
 			kodeJadwal           sql.NullString
 			deskripsi            sql.NullString

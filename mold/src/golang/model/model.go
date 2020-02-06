@@ -2,8 +2,8 @@ package model
 
 import "time"
 
-// HKJadwalTeknik ...
-type HKJadwalTeknik struct {
+// {{ toCamel .ProjectName }} ...
+type {{ toCamel .ProjectName }} struct {
 	ID                   int64      `json:"id"`
 	KodeJadwal           string     `json:"kode_jadwal" binding:"required"`
 	Deskripsi            string     `json:"deskripsi" binding:"required"`

@@ -20,11 +20,11 @@ func NewRoutes() *gin.Engine {
 
 	v2 := r.Group("/v2")
 	{
-		v2.POST("/jadwal-teknik", handler.CreateOne)
-		v2.PUT("/jadwal-teknik/:id", handler.UpdateOneByID)
-		v2.GET("/jadwal-teknik/:id", handler.GetOneByID)
-		v2.DELETE("/jadwal-teknik/:id", handler.DeleteOneByID)
-		v2.GET("/jadwal-teknik", handler.GetAll)
+		v2.POST("/hk-pengiriman", handler.CreateOne)
+		v2.PUT("/hk-pengiriman/:id", handler.UpdateOneByID)
+		v2.GET("/hk-pengiriman/:id", handler.GetOneByID)
+		v2.DELETE("/hk-pengiriman/:id", handler.DeleteOneByID)
+		v2.GET("/hk-pengiriman", handler.GetAll)
 	}
 
 	return r
