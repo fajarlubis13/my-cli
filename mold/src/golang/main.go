@@ -1,4 +1,4 @@
-package main {{ Truncate .Title 3 }}
+package main {{ toLowerCamel .Title }}
 
 import (
 	"hk-jadwal-teknik/routes"
