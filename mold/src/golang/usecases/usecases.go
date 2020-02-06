@@ -2,9 +2,9 @@ package usecases
 
 import (
 	"errors"
-	"hk-jadwal-teknik/helpers/request"
-	"hk-jadwal-teknik/model"
-	"hk-jadwal-teknik/repositories"
+	"{{ toDelimeted .ProjectName 45 }}/helpers/request"
+	"{{ toDelimeted .ProjectName 45 }}/model"
+	"{{ toDelimeted .ProjectName 45 }}/repositories"
 )
 
 // Usecases ...

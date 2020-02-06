@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"hk-jadwal-teknik/helpers/request"
-	"hk-jadwal-teknik/helpers/response"
-	"hk-jadwal-teknik/model"
-	"hk-jadwal-teknik/usecases"
+	"hk-pengiriman/helpers/request"
+	"hk-pengiriman/helpers/response"
+	"hk-pengiriman/model"
+	"hk-pengiriman/usecases"
 	"strconv"
 	"strings"
 

@@ -2,9 +2,9 @@ package usecases
 
 import (
 	"errors"
-	"hk-jadwal-teknik/helpers/request"
-	"hk-jadwal-teknik/model"
-	"hk-jadwal-teknik/repositories"
+	"hk-pengiriman/helpers/request"
+	"hk-pengiriman/model"
+	"hk-pengiriman/repositories"
 )
 
 // Usecases ...

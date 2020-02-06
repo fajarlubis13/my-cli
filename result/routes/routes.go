@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"hk-jadwal-teknik/handlers"
+	"hk-pengiriman/handlers"
 
 	"github.com/gin-gonic/gin"
 )

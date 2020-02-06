@@ -1,7 +1,7 @@
 package routes
 
 import (
-	"hk-jadwal-teknik/handlers"
+	"{{ toDelimeted .ProjectName 45 }}/handlers"
 
 	"github.com/gin-gonic/gin"
 )

@@ -1,7 +1,7 @@
-package main {{ toLowerCamel .Title }}
+package main
 
 import (
-	"hk-jadwal-teknik/routes"
+	"{{ toDelimeted .ProjectName 45 }}/routes"
 	"log"
 
 	"github.com/joho/godotenv"

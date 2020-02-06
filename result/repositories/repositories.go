@@ -3,11 +3,11 @@ package repositories
 import (
 	"database/sql"
 	"fmt"
-	"hk-jadwal-teknik/model"
+	"hk-pengiriman/model"
 	"strconv"
 
-	"hk-jadwal-teknik/helpers/database"
-	"hk-jadwal-teknik/helpers/request"
+	"hk-pengiriman/helpers/database"
+	"hk-pengiriman/helpers/request"
 
 	"github.com/jmoiron/sqlx"
 

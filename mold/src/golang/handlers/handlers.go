@@ -1,10 +1,10 @@
 package handlers
 
 import (
-	"hk-jadwal-teknik/helpers/request"
-	"hk-jadwal-teknik/helpers/response"
-	"hk-jadwal-teknik/model"
-	"hk-jadwal-teknik/usecases"
+	"{{ toDelimeted .ProjectName 45 }}/helpers/request"
+	"{{ toDelimeted .ProjectName 45 }}/helpers/response"
+	"{{ toDelimeted .ProjectName 45 }}/model"
+	"{{ toDelimeted .ProjectName 45 }}/usecases"
 	"strconv"
 	"strings"
 

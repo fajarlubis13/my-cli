@@ -11,8 +11,8 @@ import (
 	"github.com/iancoleman/strcase"
 )
 
-type Page struct {
-	Title string
+type DataSource struct {
+	ProjectName string
 }
 
 func getWD() string {
@@ -21,9 +21,12 @@ func getWD() string {
 }
 
 func main() {
+	p := DataSource{
+		ProjectName: "HK Pengiriman",
+	}
+
 	targetPath := getWD() + "/result"
 	sourcePath := "mold/src/golang"
-	p := Page{Title: "Heading Test The Fox Jump Over The Lazy Dog"}
 
 	err := filepath.Walk(sourcePath,
 		func(path string, info os.FileInfo, err error) error {
@@ -31,7 +34,7 @@ func main() {
 				return err
 			}
 
-			if strings.Contains(path, ".go") {
+			if strings.Contains(path, ".go") || strings.Contains(path, ".mod") {
 				_, fileName := filepath.Split(path)
 
 				funcMap := template.FuncMap{
@@ -57,10 +60,16 @@ func main() {
 						return fmt.Sprintf("%s", strcase.ToScreamingKebab(values[0].(string)))
 					},
 					"toDelimeted": func(values ...interface{}) string {
-						return fmt.Sprintf("%s", strcase.ToDelimited(values[0].(string), '.'))
+						s := values[0].(string)
+
+						l := uint8(45)
+						if len(values) > 1 {
+							l = uint8(values[1].(int))
+						}
+						return fmt.Sprintf("%s", strcase.ToDelimited(s, l))
 					},
 					"toScreamingDelimeted": func(values ...interface{}) string {
-						return fmt.Sprintf("%s", strcase.ToScreamingDelimited(values[0].(string), '.', '.', false))
+						return fmt.Sprintf("%s", strcase.ToScreamingDelimited(values[0].(string), '-', '-', false))
 					},
 					"toCamel": func(values ...interface{}) string {
 						return fmt.Sprintf("%s", strcase.ToCamel(values[0].(string)))

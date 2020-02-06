@@ -1,4 +1,4 @@
-module {{ toDelimeted .ProjectName 45 }}
+module hk-pengiriman
 
 go 1.13
 

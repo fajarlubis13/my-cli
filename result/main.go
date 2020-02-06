@@ -1,7 +1,7 @@
-package main headingTestTheFoxJumpOverTheLazyDog
+package main
 
 import (
-	"hk-jadwal-teknik/routes"
+	"hk-pengiriman/routes"
 	"log"
 
 	"github.com/joho/godotenv"
