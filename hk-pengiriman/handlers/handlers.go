@@ -33,7 +33,7 @@ func NewHandlers() Handlers {
 
 func (m *handlers) CreateOne(c *gin.Context) {
 	var (
-		data = model.HKJadwalTeknik{}
+		data = model.HKPengiriman{}
 		resp = &response.Response{}
 	)
 	defer resp.Serve(c)
@@ -55,7 +55,7 @@ func (m *handlers) CreateOne(c *gin.Context) {
 
 func (m *handlers) UpdateOneByID(c *gin.Context) {
 	var (
-		data = model.HKJadwalTeknik{}
+		data = model.HKPengiriman{}
 		resp = &response.Response{}
 	)
 	defer resp.Serve(c)

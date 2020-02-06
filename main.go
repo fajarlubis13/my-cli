@@ -25,7 +25,7 @@ func main() {
 		ProjectName: "HK Pengiriman",
 	}
 
-	targetPath := getWD() + "/result"
+	targetPath := fmt.Sprintf("%s/%s", getWD(), strcase.ToDelimited(p.ProjectName, '-'))
 	sourcePath := "mold/src/golang"
 
 	err := filepath.Walk(sourcePath,
