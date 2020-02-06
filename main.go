@@ -23,20 +23,15 @@ type Entity struct {
 	Binding bool
 }
 
-func getWD() string {
-	dir, _ := os.Getwd()
-	return dir
-}
-
 func main() {
 	entities := []*Entity{
 		&Entity{
-			Name:    "oke",
+			Name:    "ID Pengiriman",
 			Type:    "int64",
 			Binding: true,
 		},
 		&Entity{
-			Name: "Seep",
+			Name: "ID Surat",
 			Type: "string",
 		},
 	}
@@ -47,7 +42,8 @@ func main() {
 		TableStatus: true,
 	}
 
-	targetPath := fmt.Sprintf("%s/%s", getWD(), strcase.ToDelimited(p.ProjectName, '-'))
+	workDir, _ := os.Getwd()
+	targetPath := fmt.Sprintf("%s/%s", workDir, strcase.ToDelimited(p.ProjectName, '-'))
 	sourcePath := "mold/src/golang"
 
 	err := filepath.Walk(sourcePath,
