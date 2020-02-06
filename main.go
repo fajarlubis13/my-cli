@@ -13,6 +13,14 @@ import (
 
 type DataSource struct {
 	ProjectName string
+	Entities    []*Entity
+	TableStatus bool
+}
+
+type Entity struct {
+	Name    string
+	Type    string
+	Binding bool
 }
 
 func getWD() string {
@@ -21,8 +29,22 @@ func getWD() string {
 }
 
 func main() {
+	entities := []*Entity{
+		&Entity{
+			Name:    "oke",
+			Type:    "int64",
+			Binding: true,
+		},
+		&Entity{
+			Name: "Seep",
+			Type: "string",
+		},
+	}
+
 	p := DataSource{
 		ProjectName: "HK Pengiriman",
+		Entities:    entities,
+		TableStatus: true,
 	}
 
 	targetPath := fmt.Sprintf("%s/%s", getWD(), strcase.ToDelimited(p.ProjectName, '-'))
@@ -86,7 +108,6 @@ func main() {
 				}
 
 				__targetpath := strings.Replace(path, sourcePath, targetPath, -1)
-				log.Println(__targetpath)
 
 				if _, err := os.Stat(__targetpath); os.IsNotExist(err) {
 					os.MkdirAll(strings.Replace(__targetpath, fileName, "", -1), os.ModePerm)
