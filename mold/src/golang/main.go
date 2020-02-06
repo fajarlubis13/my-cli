@@ -1,4 +1,4 @@
-package main
+package main {{ Truncate .Title 3 }}
 
 import (
 	"hk-jadwal-teknik/routes"

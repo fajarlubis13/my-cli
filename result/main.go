@@ -1,4 +1,4 @@
-package main
+package main Hea ...
 
 import (
 	"hk-jadwal-teknik/routes"

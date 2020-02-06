@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"log"
 	"os"
 	"path/filepath"
@@ -29,12 +30,24 @@ func main() {
 			}
 
 			if strings.Contains(path, ".go") {
-				templates, err := template.ParseFiles(path)
+				_, fileName := filepath.Split(path)
+
+				funcMap := template.FuncMap{
+					"Truncate": func(values ...interface{}) string {
+						s := values[0].(string)
+						l := 5
+						if len(values) > 1 {
+							l = values[1].(int)
+						}
+						return fmt.Sprintf("%s ...", s[:l])
+					},
+				}
+
+				// templates, err := template.ParseFiles(path)
+				templates, err := template.New(fileName).Funcs(funcMap).ParseFiles(path)
 				if err != nil {
 					return err
 				}
-
-				_, fileName := filepath.Split(path)
 
 				__targetpath := strings.Replace(path, sourcePath, targetPath, -1)
 				log.Println(__targetpath)
