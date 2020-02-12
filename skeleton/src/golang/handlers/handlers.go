@@ -124,10 +124,9 @@ func (m *handlers) GetAll(c *gin.Context) {
 
 	filter.AssignColumnFilter(
 		[]request.ColumnFilter{
-			request.ColumnFilter{Column: "id", Criteria: c.QueryMap("id")},
-			request.ColumnFilter{Column: "kode_jadwal", Criteria: c.QueryMap("kode_jadwal")},
-			request.ColumnFilter{Column: "deskripsi", Criteria: c.QueryMap("deskripsi")},
-			request.ColumnFilter{Column: "id_skema_laporan_teknik", Criteria: c.QueryMap("id_skema_laporan_teknik")},
+			{{ range $e := .Entities -}}
+			request.ColumnFilter{Column: "{{ toDelimeted $e.Name 95 }}", Criteria: c.QueryMap("{{ toDelimeted $e.Name 95 }}")},
+			{{ end -}}
 		},
 	)
 

@@ -124,10 +124,8 @@ func (m *handlers) GetAll(c *gin.Context) {
 
 	filter.AssignColumnFilter(
 		[]request.ColumnFilter{
-			request.ColumnFilter{Column: "id", Criteria: c.QueryMap("id")},
-			request.ColumnFilter{Column: "kode_jadwal", Criteria: c.QueryMap("kode_jadwal")},
-			request.ColumnFilter{Column: "deskripsi", Criteria: c.QueryMap("deskripsi")},
-			request.ColumnFilter{Column: "id_skema_laporan_teknik", Criteria: c.QueryMap("id_skema_laporan_teknik")},
+			request.ColumnFilter{Column: "id_pengiriman", Criteria: c.QueryMap("id_pengiriman")},
+			request.ColumnFilter{Column: "id_surat", Criteria: c.QueryMap("id_surat")},
 		},
 	)
 
